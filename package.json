@@ -2,6 +2,10 @@
   "name": "saint-manager-back",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "npx nodemon index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
