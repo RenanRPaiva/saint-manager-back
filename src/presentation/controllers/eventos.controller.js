@@ -1,5 +1,6 @@
 const eventosStatus = ["ativo", "inativo"];
 const listaEventoUseCase = require('../../core/eventos/listar-eventos.usecase')
+const listaEventosMapper = require('../mapper/eventos/lista-evento.mapper')
 
 const listaEvento = (req, res) => {
   //Extrair dados
@@ -13,8 +14,27 @@ const listaEvento = (req, res) => {
             message: "",
            })
   }
+
+  //Camada de negócio
+  const listaEvento = listaEventoUseCase({ status: query })
+
+  //Montar objeto de saída
+  res.json(listaEventosMapper.domainToDto(listaEvento));  
 }
 
-const ueResult = listaEventoUseCase({ status: query })
+const exibeEvento = (req, res) => {
 
-// Montar objeto de saída
+  //Extrair dados
+  console.log(req.params);
+  const id = req.params.id;
+
+  //Valida os dados
+  if (!id || id == ' ') {
+    return res.status(400).json({
+      mensagem: "Evento id não informado",
+    })
+  }
+
+  //Camada de negocio
+  // const exibeEventos = 
+}

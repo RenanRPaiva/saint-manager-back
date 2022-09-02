@@ -32,24 +32,17 @@ module.exports = class EventoEntity {
     nome,
     descricao,
     departamento,
-    coordenacao,
-    equipe,
+    coordenacao = [],
+    equipe = [],
     data,
     hora,
     local,
     status,
-    inscricoes
+    inscricoes = [] 
   ) {
-    let _inscricoes = []   
-    if (!inscricoes)
-    this.inscricoes = _inscricoes
-    let _coordenacao = []
-    if(!coordenacao)
-    this.coordenacao = _coordenacao
-    let _equipe = [] 
-    if(!equipe)
-    this.equipe = _equipe
-
+    // let _inscricoes = []   
+    // if (!inscricoes)
+    // this.inscricoes = _inscricoes
 
     return new EventoEntity(
     id,

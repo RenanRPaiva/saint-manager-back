@@ -144,17 +144,17 @@ const search = ({ status }) => {
      status
     } = item;
     return EventoEntity.build(
-      id,
-      imagem,
-      nome,
-      descricao,
-      departamento,
-      coordenacao,
-      equipe,
-      data,
-      hora,
-      local,
-      status,
+     id,
+     imagem,
+     nome,
+     descricao,
+     departamento,
+     coordenacao,
+     equipe,
+     data,
+     hora,
+     local,
+     status    
     )
   });
 }
