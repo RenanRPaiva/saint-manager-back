@@ -1,0 +1,33 @@
+{
+  "name": "saint-manager-back",
+  "version": "1.0.0",
+  "description": "Projeto Saint Manager Api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenanRPaiva/saint-manager-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RenanRPaiva/saint-manager-back/issues"
+  },
+  "homepage": "https://github.com/RenanRPaiva/saint-manager-back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.3",
+    "sequelize-cli": "^6.5.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.1.0",
+    "nodemon": "^2.0.20",
+    "sinon": "^2.4.1"
+  }
+}
