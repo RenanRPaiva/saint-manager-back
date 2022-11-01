@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "mysql",
-    "database": "poc_saintmanager",
+    "database": "saintmanager",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
