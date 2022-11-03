@@ -25,6 +25,30 @@ class UsersController {
                 return res.status(500).send(error.message);
             }
     };
+
+    static async createUser(req, res) {
+        const { name, email, senha, tipo } = req.body;
+        try {
+            const verifyingUser = await database.Users.findOne({
+                where: {
+                    email: email
+                }
+            });
+            if (verifyingUser) {
+                return res
+                .send("O usuário já está cadastrado", { verifyingUser });
+            }
+            const user = await database.Users.create({ 
+                name,
+                email,
+                senha,
+                tipo
+             });
+            return res.status(200).send({ msg: "Usuário cadastrado com sucesso!", ...user });
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    };
 };
 
 module.exports = UsersController;
