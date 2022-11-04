@@ -49,6 +49,41 @@ class UsersController {
             return res.status(500).send(error.message);
         }
     };
+
+    static async editUser(req, res){
+        const { userId } = req.params;
+        const newUser = req.body;
+        try {
+            await database.Users.update(newUser, {
+                where: {
+                    id: Number(userId)
+                }
+            });
+
+            const  updateUser = await database.Users.findOne({ 
+                where: {
+                    id: Number(userId)
+                }
+             });
+             return res.status(200).send({ msg: "Usuário atualizado com sucesso!", ...updateUser });
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    };
+
+    static async deleteUser(req, res) {
+        const { userId } = req.params;
+        try {
+            await database.Users.destroy({ 
+                where: {
+                    id: Number(userId)
+                }
+             });
+             return res.status(200).send("Usuário deletado com sucesso!");
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
 };
 
 module.exports = UsersController;
