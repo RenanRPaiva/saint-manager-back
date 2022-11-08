@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       depart: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       coord_id: {
         allowNull:false,        
