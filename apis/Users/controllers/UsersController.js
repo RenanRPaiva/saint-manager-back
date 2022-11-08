@@ -102,6 +102,25 @@ class UsersController {
             return res.status(500).send(error.message);
         }
     };
+
+    static async createInscrito(req, res){
+        const { user_id } = req.params;
+        const newInscrito = { ...req.body, user_id: Number(user_id) };
+        try {
+            const verifyingUser = await database.Inscritos.findOne({ 
+                where: {
+                    user_id: Number(user_id)
+                }
+             });
+             if (!verifyingUser){
+                return res.status(400).send({msgError: "Usuário já inscrito!"});                
+             };
+            const createdInscrito = await database.Inscritos.create(newInscrito);
+            return res.status(200).send({ msgSuccess: "Cadastrado com Sucesso!", ...createdInscrito });
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
 };
 
 module.exports = UsersController;
