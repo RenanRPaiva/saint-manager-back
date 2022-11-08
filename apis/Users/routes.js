@@ -11,6 +11,7 @@ route.delete('/delete-user/:userId', UsersController.deleteUser);
 
 //Inscritos
 route.get('/user/:user_id/inscritos/:inscrito_id', UsersController.getInscrito);
+route.put('/inscritos/:inscrito_id/user/:user_id', UsersController.editInscrito);
 route.post('/inscritos/:user_id/user', UsersController.createInscrito);
 
 module.exports = route;
