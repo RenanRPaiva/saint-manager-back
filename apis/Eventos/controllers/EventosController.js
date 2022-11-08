@@ -23,6 +23,16 @@ class EventoController {
             return res.status(500).send(error.message);               
         }
     };
+
+    static async createEvento(req, res){
+        const newEvento = req.body
+        try {
+            const newCreatedEvento = await database.Eventos.create(newEvento);
+            return res.status(200).send({ msg:"Evento Criado!", ...newCreatedEvento });
+        } catch (error) {
+            return res.status(500).send(error.message);                          
+        }
+    };
  };
 
  module.exports = EventoController;
