@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const route = Router();
+const EventoController = require('./controllers/EventosController');
 
-route.get('/eventos', (req, res) => res.send({msg: "Funcionando", serviceRoute: "Eventos Service API"}));
+route.get('/eventos', EventoController.getAllEventos);
 
 module.exports = route;
