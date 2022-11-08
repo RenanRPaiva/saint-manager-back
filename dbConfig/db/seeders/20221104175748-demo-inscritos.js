@@ -7,21 +7,21 @@ module.exports = {
       [
         {
           status: "Inscrito",
-          user_id: 1,
+          user_id: 3,
           evento_id: 3,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           status: "Inscrito",
-          user_id: 1,
+          user_id: 4,
           evento_id: 5,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           status: "Cancelado",
-          user_id: 1,
+          user_id: 5,
           evento_id: 2,
           createdAt: new Date(),
           updatedAt: new Date()

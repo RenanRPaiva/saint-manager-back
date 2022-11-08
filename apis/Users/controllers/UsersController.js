@@ -83,7 +83,25 @@ class UsersController {
         } catch (error) {
             return res.status(500).send(error.message);
         }
-    }
+    };
+
+    static async getInscrito(req, res) {
+        const { user_id, inscrito_id } = req.params;
+        try {
+            const oneInscrito = await database.Inscritos.findOne({ 
+                where: {
+                    id: Number(inscrito_id),
+                    user_id: Number(user_id)
+                }
+             });
+             if (!oneInscrito){
+                return res.status(404).send({msgError: "Inscrito não encontrado!"});
+             }
+             return res.status(200).send(oneInscrito);
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    };
 };
 
 module.exports = UsersController;
