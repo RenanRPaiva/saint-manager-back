@@ -33,6 +33,25 @@ class EventoController {
             return res.status(500).send(error.message);                          
         }
     };
+    static async editEvento(req, res){
+        const { evento_id } = req.params;
+        const newEventoInfo = req.body;
+        try {
+            await database.Eventos.update(newEventoInfo, {
+                where: {
+                    id: Number(evento_id)
+                }
+            });
+            const updateEvento = await database.Eventos.findOne({ 
+                where: {
+                    id: Number(evento_id)
+                }
+             });
+            return res.status(200).send({ msg:"Evento atualizado", ...updateEvento });
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    };
  };
 
  module.exports = EventoController;
