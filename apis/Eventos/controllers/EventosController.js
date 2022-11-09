@@ -52,6 +52,20 @@ class EventoController {
             return res.status(500).send(error.message);
         }
     };
+
+    static async deleteEvento(req, res){
+        const { evento_id } = req.params;
+        try {
+            await database.Eventos.destroy({ 
+                where: {
+                    id: Number(evento_id)
+                }
+             });
+            return res.status(200).send({ msg:`O evento de ID: ${evento_id} foi deletado com sucesso!` });
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    };
  };
 
  module.exports = EventoController;

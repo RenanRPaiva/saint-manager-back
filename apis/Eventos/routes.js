@@ -6,5 +6,6 @@ route.get('/eventos', EventoController.getAllEventos);
 route.get('/evento/:evento_id', EventoController.getOneEvento);
 route.post('/evento', EventoController.createEvento);
 route.put('/evento/:evento_id', EventoController.editEvento);
+route.delete('/evento/:evento_id', EventoController.deleteEvento);
 
 module.exports = route;
