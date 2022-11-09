@@ -20,23 +20,7 @@ module.exports = {
       },
       depart: {
         type: Sequelize.STRING
-      },
-      coord_id: {
-        allowNull:false,        
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id"
-        }
-      },
-      team_id: {
-        allowNull:false,        
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id"
-        }
-      },
+      },      
       date: {
         type: Sequelize.DATEONLY
       },

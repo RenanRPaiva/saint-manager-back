@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Inscritos.init({
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    categoria: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Inscritos',

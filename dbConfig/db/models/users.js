@@ -10,15 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Users.hasMany(models.Eventos, {
         foreignKey: "user_id"
-      });
-
-      Users.hasMany(models.Eventos, {        
-        foreignKey: "coord_id"
-      });
-      Users.hasMany(models.Eventos, {        
-        foreignKey: "team_id"
-      });
-
+      });     
       Users.hasMany(models.Inscritos, {
         foreignKey: "user_id",
       });

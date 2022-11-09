@@ -12,6 +12,9 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      categoria: {
+        type: Sequelize.STRING
+      },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

@@ -15,9 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       Eventos.belongsTo(models.Users, {
-        foreignKey: "user_id",
-        foreignKey: "coord_id",
-        foreignKey: "team_id"
+        foreignKey: "user_id"        
       });
     }
   }
