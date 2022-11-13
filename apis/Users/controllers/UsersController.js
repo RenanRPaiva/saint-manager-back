@@ -83,7 +83,21 @@ class UsersController {
         } catch (error) {
             return res.status(500).send(error.message);
         }
-    };   
+    };
+    
+    static async restoreUser(req, res) {
+        const { user_id } = req.params;
+        try {
+            await database.Users.restore({ 
+                where: {
+                    id: Number(user_id)
+                }
+             });
+             return res.status(200).send("Usuário recuperado com sucesso!");
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }; 
 };
 
 module.exports = UsersController;
