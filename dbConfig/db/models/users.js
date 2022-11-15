@@ -21,12 +21,17 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       senha: DataTypes.STRING,
-      tipo: DataTypes.INTEGER,
+      tipo: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "Users",
-      paranoid: true
+      paranoid: true,
+      defaultScope:{
+        where:{
+          tipo: "Ativo"
+        }
+      }
     }
   );
   return Users;

@@ -3,7 +3,7 @@ const UsersController = require('./controllers/UsersController');
 const route = Router();
 
 
-route.get('/users', UsersController.getAll);
+route.get('/users', UsersController.getAllAtivo);
 route.get('/user/:userId', UsersController.getOne);
 route.post('/user', UsersController.createUser);
 route.post('/restore-user/:user_id', UsersController.restoreUser);

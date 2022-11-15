@@ -1,6 +1,6 @@
 const database = require("../../../dbConfig/db/models");
 class UsersController {
-    static async getAll(req, res){
+    static async getAllAtivo(req, res){
         try {
             const allUsers = await database.Users.findAll();
             return res.status(200).send(allUsers); 
