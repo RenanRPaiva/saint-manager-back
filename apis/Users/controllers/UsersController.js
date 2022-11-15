@@ -1,9 +1,36 @@
 const database = require("../../../dbConfig/db/models");
 class UsersController {
+    static async getAll(req, res){
+        try {
+            const allUsers = await database.Users.scope("all").findAll();
+            return res.status(200).send(allUsers); 
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
+
     static async getAllAtivo(req, res){
         try {
-            const allUsers = await database.Users.findAll();
-            return res.status(200).send(allUsers); 
+            const allUsersAtivo = await database.Users.findAll();
+            return res.status(200).send(allUsersAtivo); 
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
+
+    static async getAllInativo(req, res){
+        try {
+            const allUsersInativo = await database.Users.scope("Inativos").findAll();
+            return res.status(200).send(allUsersInativo); 
+        } catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
+
+    static async getAllAdm(req, res){
+        try {
+            const allUsersAdm = await database.Users.scope("Adm").findAll();
+            return res.status(200).send(allUsersAdm); 
         } catch (error) {
             return res.status(500).send(error.message);
         }

@@ -31,6 +31,21 @@ module.exports = (sequelize, DataTypes) => {
         where:{
           tipo: "Ativo"
         }
+      },
+      scopes:{
+        all: {
+          where:{}
+        },
+        Inativos:{
+          where: {
+            tipo: "Inativo"
+          }
+        },
+        Adm: {
+          where: {
+            tipo: "Administrador"
+          }
+        }
       }
     }
   );
