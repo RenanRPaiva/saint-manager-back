@@ -1,4 +1,6 @@
 const database = require("../../../dbConfig/db/models");
+const validator = require("validator");
+const { MissingEmailException, InvalidTipoException } = require("../common/exceptions");
 class UsersController {
     static async getAll(req, res){
         try {
@@ -57,7 +59,14 @@ class UsersController {
 
     static async createUser(req, res) {
         const { name, email, senha, tipo } = req.body;
+
         try {
+            const isTipo = tipo === "Ativo" || "Inativo" || "Administrador";
+            const isEmail = validator.isEmail(email);
+    
+            if (!isEmail) throw new MissingEmailException();
+            if (!isTipo) throw new InvalidTipoException();
+            
             const verifyingUser = await database.Users.findOne({
                 where: {
                     email: email
