@@ -53,6 +53,34 @@ class InscritoController {
         }
     };
 
+    static async disableUser(req, res) {
+        const { user_id } = req.params;
+
+        try {
+            database.sequelize.transaction(async (trans) => { 
+                await database.Users.update(
+                    { tipo: "Inativo" },
+                    { where: { id: Number(user_id) } },
+                    { transaction: trans }
+                );
+                await database.Inscritos.update(
+                    { status: "Cancelado" },
+                    {
+                        where:{
+                           user_id: Number(user_id) 
+                        }
+                    },
+                    { transaction: trans }
+                );
+                return res.status(200).send({
+                    message: `Inscrições ref. usuário ${user_id} cancelados!`
+                });
+             });
+        } catch (error) {
+            return res.status(500).send(error.message);           
+        }
+    };
+
     static async createInscrito(req, res){
         const { user_id } = req.params;
         const newInscrito = { ...req.body, user_id: Number(user_id) };
