@@ -19,6 +19,22 @@ class InscritoController {
         }
     };
 
+    static async getInscritoPorEvento (req, res){
+        const { eventoId } = req.params;
+        try {
+            const inscritos = await database.Inscritos.findAndCountAll({ 
+                where: { 
+                    evento_id: Number(eventoId),
+                    status: "Inscrito",
+                    
+                 }
+             });
+             return res.status(200).send(inscritos);
+        } catch (error) {
+            return res.status(500).send(error.message);            
+        }
+    };
+
     static async createInscrito(req, res){
         const { user_id } = req.params;
         const newInscrito = { ...req.body, user_id: Number(user_id) };
