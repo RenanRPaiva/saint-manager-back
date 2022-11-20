@@ -67,7 +67,7 @@ class UsersController {
             if (!isEmail) throw new MissingEmailException();
             if (!isTipo) throw new InvalidTipoException();
             
-            const verifyingUser = await database.Users.findOne({
+            const verifyingUser = await database.Users.scope("all").findOne({
                 where: {
                     email: email
                 }
@@ -76,7 +76,7 @@ class UsersController {
                 return res
                 .send("O usuário já está cadastrado", { verifyingUser });
             }
-            const user = await database.Users.create({ 
+            const user = await database.Users.scope("all").create({ 
                 name,
                 email,
                 senha,
@@ -92,7 +92,7 @@ class UsersController {
         const { userId } = req.params;
         const newUser = req.body;
         try {
-            await database.Users.update(newUser, {
+            await database.Users.scope("all").update(newUser, {
                 where: {
                     id: Number(userId)
                 }
