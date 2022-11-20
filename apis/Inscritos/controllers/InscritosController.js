@@ -35,6 +35,24 @@ class InscritoController {
         }
     };
 
+    static async getInscritoPorUser (req, res){
+        const { user_id } = req.params;
+        try {
+            const user = await database.Users.findOne({ 
+                where: { 
+                    id: Number(user_id)
+                 }
+             });
+             const inscrito = await user.getInscritosConfirmados();
+             if (!user) {
+                return res.status(203).send({ msgError: "Usuário não encontrado!" });
+             }
+             return res.status(200).send(inscrito);
+        } catch (error) {
+            return res.status(500).send(error.message);            
+        }
+    };
+
     static async createInscrito(req, res){
         const { user_id } = req.params;
         const newInscrito = { ...req.body, user_id: Number(user_id) };
