@@ -1,5 +1,4 @@
 const database = require("../../../dbConfig/db/models");
-const { deleteEvento } = require("../controllers/EventosController");
 
 class ModelServiceEvento{
     constructor(modelName){

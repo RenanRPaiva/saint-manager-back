@@ -1,4 +1,3 @@
-const database = require('../../../dbConfig/db/models');
 const ModelServiceEvento = require('../services/model.service');
 const eventosServices = new ModelServiceEvento("Eventos");
 
