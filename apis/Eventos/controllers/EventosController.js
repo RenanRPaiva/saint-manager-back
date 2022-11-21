@@ -1,9 +1,11 @@
 const database = require('../../../dbConfig/db/models');
+const ModelServiceEvento = require('../services/model.service');
+const eventosServices = new ModelServiceEvento("Eventos");
 
 class EventoController { 
     static async getAllEventos(req, res){
         try {
-            const eventosAll = await database.Eventos.findAll();
+            const eventosAll = await eventosServices.eventosAll();
             return res.status(200).send(eventosAll);
         } catch (error) {
             return res.status(500).send(error.message);            
@@ -13,11 +15,7 @@ class EventoController {
     static async getOneEvento(req, res){
         const { evento_id } = req.params;
         try {
-            const oneEvento = await database.Eventos.findOne({ 
-                where: {
-                    id: Number(evento_id)
-                }
-             });
+            const oneEvento = await eventosServices.getOneEvento(evento_id);
              return res.status(200).send(oneEvento);
         } catch (error) {
             return res.status(500).send(error.message);               
@@ -27,7 +25,7 @@ class EventoController {
     static async createEvento(req, res){
         const newEvento = req.body
         try {
-            const newCreatedEvento = await database.Eventos.create(newEvento);
+            const newCreatedEvento = await eventosServices.createEvento(newEvento);
             return res.status(200).send({ msg:"Evento Criado!", ...newCreatedEvento });
         } catch (error) {
             return res.status(500).send(error.message);                          
@@ -37,16 +35,8 @@ class EventoController {
         const { evento_id } = req.params;
         const newEventoInfo = req.body;
         try {
-            await database.Eventos.update(newEventoInfo, {
-                where: {
-                    id: Number(evento_id)
-                }
-            });
-            const updateEvento = await database.Eventos.findOne({ 
-                where: {
-                    id: Number(evento_id)
-                }
-             });
+            await eventosServices.editEvento(newEventoInfo, evento_id);
+            const updateEvento = await eventosServices.getOneEvento(evento_id);
             return res.status(200).send({ msg:"Evento atualizado", ...updateEvento });
         } catch (error) {
             return res.status(500).send(error.message);
@@ -56,11 +46,7 @@ class EventoController {
     static async deleteEvento(req, res){
         const { evento_id } = req.params;
         try {
-            await database.Eventos.destroy({ 
-                where: {
-                    id: Number(evento_id)
-                }
-             });
+            await eventosServices.deleteEvento(evento_id);
             return res.status(200).send({ msg:`O evento de ID: ${evento_id} foi deletado com sucesso!` });
         } catch (error) {
             return res.status(500).send(error.message);

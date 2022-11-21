@@ -1,5 +1,4 @@
 const database = require("../../../dbConfig/db/models");
-const { deleteUser } = require("../controllers/UsersController");
 
 class ModelService{
     constructor(modelName){
@@ -66,7 +65,7 @@ class ModelService{
     }
 
     async deleteUser( userId ){
-        return database.Users.destroy({ 
+        return database[this.modelName].destroy({ 
             where: {
                 id: Number(userId)
             }
